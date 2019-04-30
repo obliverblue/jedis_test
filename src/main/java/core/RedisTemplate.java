@@ -17,14 +17,19 @@ public class RedisTemplate
 		this.connectionFactory = connectionFactory;
 	}
 
-	public <T> T execute(RedisCallback<T> action)
+	public <T> T execute(RedisCallback<T> action, T defaultValue)
 	{
 		RedisConnection connection = null;
 		try
 		{
 			connection = connectionFactory.getConnection();
 			T ret = action.exec(connection);
-			return ret;
+			return ret != null ? ret : defaultValue;
+		}
+		catch(Exception e)
+		{
+			// TODO 记录日志
+			return defaultValue;
 		}
 		finally
 		{

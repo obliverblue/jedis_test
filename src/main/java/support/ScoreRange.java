@@ -4,7 +4,7 @@ import util.Assert;
 
 /**
  *
- * @author oliverblue
+ * @author obliverblue
  * @since 2019/4/26
  */
 public class ScoreRange

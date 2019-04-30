@@ -7,7 +7,7 @@ import redis.clients.jedis.util.Pool;
 /**
  * jedis
  *
- * @author oliverblue
+ * @author obliverblue
  * @since 2019/4/25
  */
 public class JedisConnection implements RedisConnection<Jedis>

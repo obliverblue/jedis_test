@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * 执行脚本相关的命令（主要是lua脚本）
- * @author oliverblue
+ * @author obliverblue
  * @since 2019/4/25
  * @see <a href="https://redis.io/commands#scripting">script commands</a>
  */

@@ -236,9 +236,9 @@ public class JedisZSetCommands implements RedisZSetCommands
 		byte[] max = Converters.boundaryToBytes(ScoreRange.getMax(), Converters.POSITIVE_INFINITY_BYTES);
 		if(limit != null)
 		{
-			return connection.getConnection().zrevrangeByScore(key, min, max, limit.getOffset(), limit.getCount());
+			return connection.getConnection().zrevrangeByScore(key, max, min, limit.getOffset(), limit.getCount());
 		}
-		return connection.getConnection().zrevrangeByScore(key, min, max);
+		return connection.getConnection().zrevrangeByScore(key, max, min);
 	}
 
 	@Override
@@ -264,9 +264,9 @@ public class JedisZSetCommands implements RedisZSetCommands
 		byte[] max = Converters.boundaryToBytes(ScoreRange.getMax(), Converters.POSITIVE_INFINITY_BYTES);
 		if(limit != null)
 		{
-			return connection.getConnection().zrevrangeByScoreWithScores(key, min, max, limit.getOffset(), limit.getCount());
+			return connection.getConnection().zrevrangeByScoreWithScores(key, max, min, limit.getOffset(), limit.getCount());
 		}
-		return connection.getConnection().zrevrangeByScoreWithScores(key, min, max);
+		return connection.getConnection().zrevrangeByScoreWithScores(key, max, min);
 	}
 
 	@Override

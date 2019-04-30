@@ -111,6 +111,11 @@ public class JedisKeyCommands implements RedisKeyCommands
 		return connection.getConnection().randomBinaryKey();
 	}
 
+	/**
+	 * 当过期时间移除成功时，返回 1 。 如果 key 不存在或 key 没有设置过期时间，返回 0 。
+	 * @param key
+	 * @return
+	 */
 	@Override
 	public Boolean persist(byte[] key)
 	{

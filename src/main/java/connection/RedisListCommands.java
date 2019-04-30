@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * list（列表）相关操作
- * @author oliverblue
+ * @author obliverblue
  * @since 2019/4/25
  */
 public interface RedisListCommands

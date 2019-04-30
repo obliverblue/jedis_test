@@ -1,9 +1,5 @@
 package core;
 
-import support.RedisDataType;
-
-import java.util.Set;
-
 /**
  *
  * @since 2019/4/29
@@ -12,54 +8,19 @@ public interface KeyOperation<K>
 {
 
 	/**
-	 * 返回所有匹配pattern的key
-	 *
-	 * Warning: consider KEYS as a command that should only be used in production environments
-	 * with extreme care. It may ruin performance when it is executed against large databases.
-	 *
-	 * @param pattern
-	 * @return
-	 */
-	Set<K> keys(K pattern);
-
-
-	/**
-	 * 判断keys 是否存在
-	 *
-	 * @param keys
-	 * @return 返回keys数组中有多少个key存在（重复的key，也会重复计算）
-	 */
-	Long exists(K... keys);
-
-	/**
-	 *  删除keys
-	 * @param keys
-	 * @return 返回删除的key的数量
-	 */
-	Long del(K... keys);
-
-
-	/**
-	 * 删除keys
-	 *
-	 * This command is very similar to DEL: it removes the specified keys. Just like DEL a key is ignored if it does not exist.
-	 *
-	 * 特点
-	 *  1、工作在其他线程
-	 *  2、回收内存
-	 *  3、异步
-	 * @param keys
-	 * @return
-	 */
-	Long unlink(K... keys);
-
-	/**
-	 * 获取redis key的数据类型
+	 * 判断key是否存在
 	 * @param key
 	 * @return
 	 */
-	RedisDataType type(K key);
+	Boolean exists(K key);
 
+
+	/**
+	 * 删除key
+	 * @param key
+	 * @return
+	 */
+	Boolean del(K key);
 
 	/**
 	 * 设置key的过期时间 单位seconds
@@ -116,7 +77,7 @@ public interface KeyOperation<K>
 	 * Return a random key from the currently selected database.
 	 * @return
 	 */
-	K randomkey();
+	String randomkey();
 
 	/**
 	 * 去除过期时间

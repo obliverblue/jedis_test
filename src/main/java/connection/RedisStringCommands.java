@@ -9,7 +9,7 @@ import java.util.Map;
  * String（字符串）相关操作 字节数组版
  * 提供一些常用的命令
  *
- * @author oliverblue
+ * @author obliverblue
  * @see <a href="https://redis.io/commands#string">string commands</a>
  * @since 2019/4/25
  */
@@ -141,7 +141,7 @@ public interface RedisStringCommands
 	 * @param delta
 	 * @return
 	 */
-	Double incrBy(byte[] key, double delta);
+	Double incrByFloat(byte[] key, double delta);
 
 
 
@@ -215,27 +215,17 @@ public interface RedisStringCommands
 		/**
 		 * 不设置任何额外的参数
 		 */
-		UPSERT,
+		NONE,
 		/**
 		 * NX
 		 */
-		SET_IF_ABSENT
+		SET_IF_ABSENT,
 		/**
 		 * XX
 		 */
-		,
-		SET_IF_PRESENT;
 
-		public static SetOption upsert() {
-			return UPSERT;
-		}
+		SET_IF_PRESENT,
+		;
 
-		public static SetOption ifPresent() {
-			return SET_IF_PRESENT;
-		}
-
-		public static SetOption ifAbsent() {
-			return SET_IF_ABSENT;
-		}
 	}
 }

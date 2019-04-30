@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 
 /**
  * Redis : ZUNIONSTORE/ZINTERSTORE 中使用的权重类
- * @author oliverblue
+ * @author obliverblue
  * @since 2019/4/28
  */
 public class Weights

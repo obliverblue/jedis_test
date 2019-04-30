@@ -6,7 +6,7 @@ import java.util.Set;
 
 /**
  * redis  key相关的操作
- * @author oliverblue
+ * @author obliverblue
  * @since 2019/4/25
  * @see <a href="https://redis.io/commands#generic">key commands</a>
  */

@@ -3,7 +3,7 @@ package connection;
 /**
  * 连接redis server， 提供redis的相关命令
  *
- * @author oliverblue
+ * @author obliverblue
  * @see <a href="https://redis.io/commands#connection">connection commands</a>
  * @since 2019/4/25
  */

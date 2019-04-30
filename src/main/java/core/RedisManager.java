@@ -15,7 +15,9 @@ public class RedisManager
 
 	private static RedisTemplate redisTemplate;
 
-	private static Map<String, StringOperation>  stringOperationMap = new HashMap<>();
+	private static Map<String, StringOperation> stringOperationMap = new HashMap<>();
+
+	private static Map<String, ZSetOperation> zSetOperationMap = new HashMap<>();
 
 	public static void init(JedisClientConfiguration clientConfiguration)
 	{
@@ -30,6 +32,9 @@ public class RedisManager
 	{
 		DefaultStringOpreation<Integer, Integer> stringOpreation = new DefaultStringOpreation("test", redisTemplate, Integer.class, Integer.class);
 		stringOperationMap.put("test", stringOpreation);
+
+		ZSetOperation<Integer, Integer> zSetOperation = new DefaultZSetOperation<>("zset_1", redisTemplate, Integer.class, Integer.class);
+		zSetOperationMap.put("zset_1", zSetOperation);
 	}
 
 
@@ -45,6 +50,12 @@ public class RedisManager
 	public static StringOperation getStringOperation(String prefix)
 	{
 		return stringOperationMap.get(prefix);
+	}
+
+
+	public static ZSetOperation getZSetOperation(String prefix)
+	{
+		return zSetOperationMap.get(prefix);
 	}
 
 

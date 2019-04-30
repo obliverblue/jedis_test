@@ -175,7 +175,7 @@ public class JedisStringCommands implements RedisStringCommands
 	}
 
 	@Override
-	public Double incrBy(byte[] key, double delta)
+	public Double incrByFloat(byte[] key, double delta)
 	{
 		Assert.notNull(key, "Key must not be null!");
 		return connection.getConnection().incrByFloat(key, delta);

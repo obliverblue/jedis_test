@@ -9,7 +9,7 @@ import java.util.Set;
 /**
  * zset（有序集合）相关操作
  *
- * @author oliverblue
+ * @author obliverblue
  * @see <a href="https://redis.io/commands#sorted_set">sorted set commands</a>
  * @since 2019/4/25
  */
@@ -300,7 +300,7 @@ public interface RedisZSetCommands
 	 * @return
 	 */
 	default Set<byte[]> zRangeByScore(byte[] key, double min, double max, long offset, long count) {
-		return zRangeByScore(key, new ScoreRange().gte(min).lte(max),
+		return zRangeByScore(key, ScoreRange.builder().gte(min).lte(max),
 				Limit.builder().offset(Long.valueOf(offset).intValue()).count(Long.valueOf(count).intValue()));
 	}
 
@@ -431,6 +431,9 @@ public interface RedisZSetCommands
 	Set<Tuple> zRangeByScoreWithScores(byte[] key, ScoreRange ScoreRange, Limit limit);
 
 
+
+
+
 	/**
 	 *  元素按score从低到高的顺序返回
 	 * @param key
@@ -443,6 +446,19 @@ public interface RedisZSetCommands
 	}
 
 
+	/**
+	 *
+	 * @param key
+	 * @param min
+	 * @param max
+	 * @param offset
+	 * @param count
+	 * @return
+	 */
+	default Set<Tuple> zRevRangeByScoreWithScores(byte[] key, double min, double max, long offset, long count) {
+		return zRevRangeByScoreWithScores(key, ScoreRange.builder().gte(min).lte(max),
+				Limit.builder().offset(Long.valueOf(offset).intValue()).count(Long.valueOf(count).intValue()));
+	}
 
 	/**
 	 * 元素按score从低到高的顺序返回

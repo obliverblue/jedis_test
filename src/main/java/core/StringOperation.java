@@ -1,11 +1,13 @@
 package core;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import connection.RedisStringCommands.SetOption;
 import support.Expiration;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @since 2019/4/29
@@ -50,6 +52,15 @@ public interface StringOperation<K, V> extends KeyOperation<K>
 	 */
 	Boolean set(K key, V value);
 
+	/**
+	 *
+	 * @param key
+	 * @param value
+	 * @param timeout
+	 * @param unit
+	 * @return
+	 */
+	Boolean set(K key, V value, long timeout, TimeUnit unit);
 
 	/**
 	 * 根据expiration设置key的生命周期（过期时间）
@@ -70,8 +81,35 @@ public interface StringOperation<K, V> extends KeyOperation<K>
 	 * @param value
 	 * @return
 	 */
-	Boolean setNX(K key, V value);
+	Boolean setIfAbsent(K key, V value);
 
+	/**
+	 *
+	 * @param key
+	 * @param value
+	 * @param timeout
+	 * @param unit
+	 * @return
+	 */
+	Boolean setIfAbsent(K key, V value, long timeout, TimeUnit unit);
+
+	/**
+	 *  更新存在的value
+	 * @param key
+	 * @param value
+	 * @return
+	 */
+	Boolean setIfPresent(K key, V value);
+
+	/**
+	 * 对存在的key设置过期时间
+	 * @param key
+	 * @param value
+	 * @param timeout
+	 * @param unit
+	 * @return
+	 */
+	Boolean setIfPresent(K key, V value, long timeout, TimeUnit unit);
 
 	/**
 	 * 设置key的过期时间，单位为seconds
@@ -80,7 +118,7 @@ public interface StringOperation<K, V> extends KeyOperation<K>
 	 * @param value
 	 * @return
 	 */
-	Boolean setEx(K key, long seconds, V value);
+	Boolean setExpire(K key, long seconds, V value);
 
 
 	/**
@@ -90,7 +128,7 @@ public interface StringOperation<K, V> extends KeyOperation<K>
 	 * @param value
 	 * @return
 	 */
-	Boolean pSetEx(K key, long millseconds, V value);
+	Boolean pSetExpire(K key, long millseconds, V value);
 
 
 	/**
@@ -98,14 +136,14 @@ public interface StringOperation<K, V> extends KeyOperation<K>
 	 * @param tuples
 	 * @return
 	 */
-	Boolean mSet(Map<K, V> tuples);
+	Boolean mSet(Map<? extends K, ? extends V> tuples);
 
 	/**
 	 * 在对应的key不存在的情况下，设置key-value键值对
 	 * @param tuples
 	 * @return
 	 */
-	Boolean mSetNX(Map<K, V> tuples);
+	Boolean mSetIfAbsent(Map<? extends K, ? extends V> tuples);
 
 
 	/**
@@ -184,7 +222,7 @@ public interface StringOperation<K, V> extends KeyOperation<K>
 	 * @param end inclusive
 	 * @return
 	 */
-	byte[] getRange(K key, long start, long end);
+	String getRange(K key, long start, long end);
 
 
 	/**

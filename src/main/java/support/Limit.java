@@ -4,12 +4,12 @@ package support;
  * The optional LIMIT argument can be used to only get a ScoreRange of the matching elements (similar to SELECT LIMIT offset, count in SQL).
  * A negative count returns all elements from the offset.
  *
- * @author oliverblue
+ * @author obliverblue
  * @since 2019/4/26
  */
 public class Limit
 {
-	public static final Limit UNLIMITED = builder().offset(-1);
+	public static final Limit UNLIMITED = builder().count(-1);
 
 	private int offset;
 	private int count;
